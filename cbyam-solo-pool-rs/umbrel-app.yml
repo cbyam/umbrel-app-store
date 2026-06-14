@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.4.1"
+version: "0.5.0"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -25,16 +25,23 @@ description: >-
   - Per-miner vardiff, live dashboard with hashrate history and per-worker
   stats, Prometheus metrics
 
+  - Set or change your payout address any time from the dashboard's Settings
+  page — no config editing or SSH
+
   - Single Rust binary; uses your Umbrel's Bitcoin node over RPC with instant
   ZMQ block notifications
 
 
-  IMPORTANT — first run: set your payout address. SSH into your Umbrel and
-  edit app-data/cbyam-solo-pool-rs/data/config.toml, replacing
-  coinbase_address with your own Bitcoin address, then restart the app. The
-  pool refuses to mine until a valid address is set — every block reward goes
-  to that address and nowhere else.
-releaseNotes: ""
+  IMPORTANT — first run: open the app and set your payout address on the
+  Settings page (no SSH needed). The pool stays paused, with the dashboard
+  reachable, until a valid address for your node's network is saved — every
+  block reward goes to that address and nowhere else.
+releaseNotes: >-
+  v0.5.0 — Set or change your payout address directly from the new dashboard
+  Settings page; no more SSH or config editing. Redesigned console dashboard
+  with light/dark themes, per-worker status LEDs, and a live connectivity
+  indicator. Mining now pauses safely if the payout address doesn't match your
+  node's network, plus Stratum metrics/parser hardening.
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
 dependencies:
