@@ -18,7 +18,7 @@ services:
       APP_PORT: 9090
 
   pool:
-    image: ghcr.io/cbyam/solo-pool-rs:0.5.0@sha256:2b93370a09df2b28d64bbffc5bfa7e88da87daeb6c41026ee34c05af38796e98
+    image: ghcr.io/cbyam/solo-pool-rs:0.6.1@sha256:eb216420ef09986f7f79fdccaccc2ac42c551a0c1d07f1ce8b528b5bd7563aa6
     restart: on-failure
     stop_grace_period: 1m
     # The image's built-in user is 10001, but Umbrel's app-data dirs are owned
@@ -36,3 +36,9 @@ services:
       - SOLO_POOL_BITCOIN_RPC__USER=${APP_BITCOIN_RPC_USER}
       - SOLO_POOL_BITCOIN_RPC__PASSWORD=${APP_BITCOIN_RPC_PASS}
       - SOLO_POOL_ZMQ__HASHBLOCK_ENDPOINT=tcp://${APP_BITCOIN_NODE_IP}:${APP_BITCOIN_ZMQ_HASHBLOCK_PORT}
+      # Since 0.6.0 the pool persists its SV2 authority key (miner identity
+      # pinning) and fails at boot if it cannot create the file. The default
+      # path is relative to /app, which uid 1000 cannot write, so keep the key
+      # in the data volume. This also preserves the pool's identity across
+      # container re-creates.
+      - SOLO_POOL_SV2__AUTHORITY_KEY_FILE=/app/data/sv2-authority.key

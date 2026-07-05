@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.5.0"
+version: "0.6.1"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,11 +37,17 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.5.0 — Set or change your payout address directly from the new dashboard
-  Settings page; no more SSH or config editing. Redesigned console dashboard
-  with light/dark themes, per-worker status LEDs, and a live connectivity
-  indicator. Mining now pauses safely if the payout address doesn't match your
-  node's network, plus Stratum metrics/parser hardening.
+  v0.6.1 rolls up three releases since 0.5.0. Stratum V2 identity pinning: the
+  pool keeps a persistent authority key and shows its public key in the
+  Connect modal, so verifying SV2 miners can pin your pool and detect
+  impostors. New Connect modal with the exact stratum URL to point miners at,
+  copy buttons that work over plain HTTP, and per-firmware quick-start hints.
+  Reject reasons at a glance: the dashboard breaks rejected shares down by
+  cause (stale, duplicate, low difficulty) pool-wide and per worker. The
+  hashrate chart can be hidden, the chain tip pulses on new blocks, and
+  miners sending suggest_difficulty now start near their settled difficulty.
+  Fixes include duplicate-share tracking correctness and a smarter
+  degraded-worker indicator that respects each miner's own share cadence.
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
 dependencies:
