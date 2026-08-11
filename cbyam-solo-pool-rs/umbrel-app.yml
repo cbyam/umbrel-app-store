@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.6.1"
+version: "0.6.5"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,17 +37,21 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.6.1 rolls up three releases since 0.5.0. Stratum V2 identity pinning: the
-  pool keeps a persistent authority key and shows its public key in the
-  Connect modal, so verifying SV2 miners can pin your pool and detect
-  impostors. New Connect modal with the exact stratum URL to point miners at,
-  copy buttons that work over plain HTTP, and per-firmware quick-start hints.
-  Reject reasons at a glance: the dashboard breaks rejected shares down by
-  cause (stale, duplicate, low difficulty) pool-wide and per worker. The
-  hashrate chart can be hidden, the chain tip pulses on new blocks, and
-  miners sending suggest_difficulty now start near their settled difficulty.
-  Fixes include duplicate-share tracking correctness and a smarter
-  degraded-worker indicator that respects each miner's own share cadence.
+  v0.6.5 rolls up four releases since 0.6.1, headlined by two reliability
+  fixes worth upgrading for. A chain tip that moved without a ZMQ
+  notification no longer leaves miners working a dead prevhash, so a found
+  block cannot be rejected for building on a stale tip even if the node's
+  ZMQ endpoint was misconfigured or silently dead. Stratum messages split
+  across TCP segments are no longer corrupted, closing a share-loss path.
+  Dead miners are detected in seconds via TCP keepalive instead of minutes,
+  and offline workers' hashrate now decays to zero on the dashboard and in
+  Prometheus instead of freezing at the last value. SV2 setup rejections
+  answer with spec-compliant errors. The dashboard gained a BIP110/RDTS
+  card showing which side of the August 2026 split your node is on, and the
+  README documents which node builds are safe to run (short version: do not
+  upgrade to an RDTS-enforcing node while that chain is stalled). Dependency
+  security advisories patched; none were reachable in this app.
+
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
 dependencies:
