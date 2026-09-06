@@ -18,7 +18,7 @@ services:
       APP_PORT: 9090
 
   pool:
-    image: ghcr.io/cbyam/solo-pool-rs:0.6.7@sha256:12c3047b30a3f93e363b5c70cd28f0a846dc258826c4f67aa8d99a5f710e2556
+    image: ghcr.io/cbyam/solo-pool-rs:0.6.8@sha256:a41cbb69087f6859e0d409df2c06e16fd76e9df8a899176ced6f523a7d558fcb
     restart: on-failure
     stop_grace_period: 1m
     # The image's built-in user is 10001, but Umbrel's app-data dirs are owned

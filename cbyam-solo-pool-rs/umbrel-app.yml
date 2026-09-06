@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.6.7"
+version: "0.6.8"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,7 +37,10 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.6.7 rolls up two releases. 0.6.6 shipped the remediation of a full
+  v0.6.8 fixes the dashboard on a pool with no miner connected: chain tip,
+  reward and network difficulty showed zero until the first miner attached,
+  which is what every fresh install looks like. They now come straight from
+  the node. v0.6.7 rolls up two releases. 0.6.6 shipped the remediation of a full
   security audit, a found-block archive that resubmits any block whose
   acceptance the pool never saw (a crash mid-submit or a node that was
   down), and a ban policy under which only oversize messages ban; honest
