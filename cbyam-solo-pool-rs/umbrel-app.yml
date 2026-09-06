@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.6.5"
+version: "0.6.7"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,20 +37,18 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.6.5 rolls up four releases since 0.6.1, headlined by two reliability
-  fixes worth upgrading for. A chain tip that moved without a ZMQ
-  notification no longer leaves miners working a dead prevhash, so a found
-  block cannot be rejected for building on a stale tip even if the node's
-  ZMQ endpoint was misconfigured or silently dead. Stratum messages split
-  across TCP segments are no longer corrupted, closing a share-loss path.
-  Dead miners are detected in seconds via TCP keepalive instead of minutes,
-  and offline workers' hashrate now decays to zero on the dashboard and in
-  Prometheus instead of freezing at the last value. SV2 setup rejections
-  answer with spec-compliant errors. The dashboard gained a BIP110/RDTS
-  card showing which side of the August 2026 split your node is on, and the
-  README documents which node builds are safe to run (short version: do not
-  upgrade to an RDTS-enforcing node while that chain is stalled). Dependency
-  security advisories patched; none were reachable in this app.
+  v0.6.7 rolls up two releases. 0.6.6 shipped the remediation of a full
+  security audit, a found-block archive that resubmits any block whose
+  acceptance the pool never saw (a crash mid-submit or a node that was
+  down), and a ban policy under which only oversize messages ban; honest
+  firmware reconnecting after a restart is never banned. 0.6.7 is the
+  dashboard release: a round-effort bar showing work since the last block
+  as a share of one expected block, a blocks-found count and last-block card
+  that survive restarts, a node-health LED that turns amber when bitcoind
+  stops answering, and downtime drawn as a gap on the hashrate chart. Log
+  files, when enabled, now keep a bounded number of days. The BIP110/RDTS
+  card was removed now that the fork has resolved. A spurious "ZMQ has been
+  silent" warning on healthy nodes is fixed.
 
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
