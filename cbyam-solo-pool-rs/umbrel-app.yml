@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.6.11"
+version: "0.6.12"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,23 +37,15 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.6.11 rolls up three releases. The dashboard now flags a miner that needs
-  a look: each worker's rejects are judged over the last hour (stale shares as
-  a rate, anything else as a device fault), the Rejects and Workers cards turn
-  amber or red and name the miner, and a recovered miner clears on its own. A
-  new FAQ, linked from the dashboard's Help link, explains every warning. The
-  3h and 24h hashrate columns now survive a miner reconnect and a pool
-  restart, and vardiff judges the work a miner's shares proved over a
-  trailing window, so difficulty no longer ratchets after a raise and holds
-  steadier. The Stratum V2 stack moves to
-  the SRI v1.12 crates with the wire format unchanged, and a regtest test now
-  mines a real block over Noise-encrypted SV2 in CI. New installs get a wider
-  difficulty range (512 to 4,194,304), suiting anything from a USB stick to
-  a large Antminer; existing installs keep their settings. Prometheus gains
-  per-miner online and last-share series for alerting, and pool-wide series
-  no longer expire after a quiet day. The image moves to Debian 13 (trixie).
-  rustls is updated for recent advisories; the pool never opens a TLS
-  connection through it, so there was no exposure.
+  v0.6.12 is a metrics and build release; mining is unchanged. For anyone
+  scraping /metrics with Prometheus: share validation and connection times
+  now keep their fractions (most read 0 before), new histograms replace the
+  duration and retarget summaries whose quantiles went blank between events,
+  and pool_share_work_total gives hashrate directly in PromQL. The old
+  summary names keep working until 1.0. The short side connections some
+  Avalon firmware opens are counted on their own, so they no longer drag
+  session lengths toward zero. The binary no longer carries any TLS code,
+  and release builds use exactly the committed dependency lockfile.
 
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
