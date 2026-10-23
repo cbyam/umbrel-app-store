@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.6.12"
+version: "0.6.13"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,15 +37,12 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.6.12 is a metrics and build release; mining is unchanged. For anyone
-  scraping /metrics with Prometheus: share validation and connection times
-  now keep their fractions (most read 0 before), new histograms replace the
-  duration and retarget summaries whose quantiles went blank between events,
-  and pool_share_work_total gives hashrate directly in PromQL. The old
-  summary names keep working until 1.0. The short side connections some
-  Avalon firmware opens are counted on their own, so they no longer drag
-  session lengths toward zero. The binary no longer carries any TLS code,
-  and release builds use exactly the committed dependency lockfile.
+  v0.6.13 quiets two warnings that every Umbrel install logged at boot
+  although nothing was wrong. "Mining is paused" no longer appears when the
+  payout address you saved in Settings is in use; the log now says which
+  saved address the pool is using. The warning that the config file exposes
+  your node's RPC password is gone too: Umbrel passes that password in
+  separately, and the shipped file holds none. Mining is unchanged.
 
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
