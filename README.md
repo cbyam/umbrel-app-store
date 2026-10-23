@@ -64,6 +64,10 @@ Bitcoin Node 1.4.0 app on regtest):
   were accepted by the node, and after an app restart the same state held
   and a fourth block was accepted. Stratum V2 was not re-tested for this
   update.
+- **Update in place** (0.6.12 to 0.6.13, 2026-10-23): the same steps, with
+  the same results: state carried over unchanged, and four blocks were
+  accepted across a restart. The boot log held no warnings. Stratum V2 was
+  not re-tested for this update.
 
 The restart and update tests ran the package submitted to the official
 Umbrel store, which uses the same image and wiring as this one under a
