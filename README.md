@@ -68,6 +68,12 @@ Bitcoin Node 1.4.0 app on regtest):
   the same results: state carried over unchanged, and four blocks were
   accepted across a restart. The boot log held no warnings. Stratum V2 was
   not re-tested for this update.
+- **Update in place** (0.6.13 to 1.0.0, 2026-11-25): the same steps. The
+  payout address, the 24 found blocks, the SV2 identity key and
+  `config.toml` carried over unchanged. Three blocks mined over Stratum V1
+  were accepted by the node, a Stratum V2 client completed the Noise
+  handshake and received work, and after an app restart the same state held
+  and a fourth block was accepted. The boot log held no warnings.
 
 The restart and update tests ran the package submitted to the official
 Umbrel store, which uses the same image and wiring as this one under a
