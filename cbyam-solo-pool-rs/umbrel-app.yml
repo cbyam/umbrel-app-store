@@ -2,7 +2,7 @@ manifestVersion: 1
 id: cbyam-solo-pool-rs
 category: bitcoin
 name: Solo Pool RS
-version: "0.6.13"
+version: "1.0.0"
 tagline: Solo-mine Bitcoin over Stratum V1 & V2 — 100% of every block to your address
 icon: https://raw.githubusercontent.com/cbyam/umbrel-app-store/main/cbyam-solo-pool-rs/icon.svg
 description: >-
@@ -37,12 +37,14 @@ description: >-
   reachable, until a valid address for your node's network is saved — every
   block reward goes to that address and nowhere else.
 releaseNotes: >-
-  v0.6.13 quiets two warnings that every Umbrel install logged at boot
-  although nothing was wrong. "Mining is paused" no longer appears when the
-  payout address you saved in Settings is in use; the log now says which
-  saved address the pool is using. The warning that the config file exposes
-  your node's RPC password is gone too: Umbrel passes that password in
-  separately, and the shipped file holds none. Mining is unchanged.
+  v1.0.0 is the first stable release. The config file, the Stratum V1 and V2
+  behaviour miners see, the dashboard's JSON and the metric names are now
+  promised not to change incompatibly within 1.x. Mining is unchanged from
+  0.6.13. The Best share card now shows your best share as a percentage of
+  network difficulty, very small percentages no longer appear in exponent
+  form, and the Powerball comparison says what it compares. If you scrape
+  /metrics with Prometheus: the four summary metrics deprecated in 0.6.12
+  are gone, so switch any panel or alert to their replacements.
 
 developer: Chuck Byam
 website: https://github.com/cbyam/solo-pool-rs
